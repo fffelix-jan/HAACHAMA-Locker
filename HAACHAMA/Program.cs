@@ -13,17 +13,17 @@ namespace HAACHAMA
         [STAThread]
         static void Main()
         {
+            bool result;
+            var mutex = new System.Threading.Mutex(true, "UniqueAppId", out result);
+            if (!result)
+            {
+                return;
+            }
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             var form = new Form1();
             Application.Run(form);
-            
-
-            //for (; ; ) {
-                // form.Show();
-                // form.BringToFront();
-                // form.Activate();
-            //}
         }
     }
 }

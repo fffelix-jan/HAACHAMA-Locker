@@ -27,6 +27,7 @@ namespace HAACHAMA
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            TopMost = true;
             InitTimer();
             InitSuperColourChanger();
             System.IO.Stream stream = Properties.Resources.haachama;
@@ -62,9 +63,10 @@ namespace HAACHAMA
         {
             AudioManager.SetMasterVolumeMute(false);
             AudioManager.SetMasterVolume(100);
-            Show();
-            BringToFront();
-            Activate();
+            this.Show();
+            this.BringToFront();
+            this.Activate();
+            this.Focus();
         }
 
         void superColourChanger_Tick(object sender, EventArgs e)
