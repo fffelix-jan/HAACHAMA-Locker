@@ -1,4 +1,9 @@
-﻿using System;
+﻿/// HAACHAMA Screen Locker
+/// Copyright (c) 2021 Felix An
+/// Licensed under the GNU AGPL 3.0
+///
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -61,8 +66,17 @@ namespace HAACHAMA
 
         void tmr_Tick(object sender, EventArgs e)
         {
-            AudioManager.SetMasterVolumeMute(false);
-            AudioManager.SetMasterVolume(100);
+            try
+            {
+                // Keep the volume at max (only works on Vista and newer)
+                AudioManager.SetMasterVolumeMute(false);
+                AudioManager.SetMasterVolume(100);
+            }
+            catch
+            {
+                // Just don't set the volume if it doesn't work (on Windows XP)
+                // Couldn't figure out how to set the volume on Windows XP
+            }
             this.Show();
             this.BringToFront();
             this.Activate();
